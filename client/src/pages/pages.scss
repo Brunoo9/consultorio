@@ -1,0 +1,156 @@
+/************ADMIN SIGNIN START************/
+
+.signing {
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #ededed;
+    &-tabs {
+      padding: 2rem;
+      width: 30rem;
+      background-color: #fff;
+
+      .ant-tabs {
+        width: 90vw;
+        @media (min-width: 398px) {
+          width: auto;
+        }
+
+        &-tab {
+          padding: 1rem 2rem !important;
+          text-align: center !important;
+
+          border-top: 4px solid #d9d9d9 !important;
+
+          @media (min-width: 398px) {
+            width: 220px;
+            font-size: 1rem;
+          }
+          &-active {
+            border-top-color: #1363df !important;
+          }
+          &:before {
+            content: none; // para sacar un borde que tenia feo
+          }
+          span {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          &-btn {
+            color: #1363df !important; //#645CAA
+          }
+        }
+        &-content {
+          padding: 1rem 2rem 1rem 2rem;
+        }
+      }
+
+      .ant-tabs-nav {
+        width: 100%;
+      }
+      .ant-btn {
+        width: 100%;
+        background-color: #8ab0c4;
+
+        border: none;
+        border-radius: 0.5rem;
+        &:hover {
+          background-color: #457289;
+        }
+      }
+      .ant-input-affix-wrapper {
+        &:hover {
+          border-color: #8ab0c4 !important;
+        }
+        &-focused {
+          border-color: #645caa !important;
+          box-shadow: 0 0 0 2px rgba(100, 92, 170, 0.2);
+          &:hover {
+            border-color: #8ab0c4 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+  &__span {
+    color: #457289;
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+}
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/************ADMIN SIGNIN FINIISHHHHHH************/
+/************ADMIN PACIENTES STARTT ************/
+
+.button-patients {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+.title-patients {
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: underline #1363df 0.2rem;
+}
+
+.iconTable {
+  color: #262626;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+/************ADMIN PACIENTES FINISSHH ************/
+
+/************ADMIN TURNOS START ************/
+.turnos {
+  &-titulo {
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #4f4f51;
+  }
+  &-span {
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    font-weight: 900;
+    color: #8ab0c4;
+  }
+}
+/************ADMIN TURNOS FINISSHH ************/
+
+.main-cita {
+  margin-top: 3.5rem;
+}
+
+.main-usuarios {
+  margin-top: 3.5rem;
+}

@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model detalle_historia {
+  iddetalle_historia Int              @id @default(autoincrement())
+  motivo             String           @db.VarChar(45)
+  tratamiento        String?          @db.VarChar(45)
+  fecha              DateTime         @db.Date
+  idhistoriaclinica  Int
+  historias_clinicas historia_clinica @relation(fields: [idhistoriaclinica], references: [idhistoriaclinica], onDelete: NoAction, onUpdate: NoAction, map: "historia2")
+
+  @@index([idhistoriaclinica], map: "historia2_idx")
+}
+
+model doctores {
+  iddoctor        Int            @id @default(autoincrement())
+  nombresdoctor   String         @db.VarChar(45)
+  apellidodoctor  String         @db.VarChar(45)
+  fechanacimiento DateTime       @db.Date
+  correo          String         @unique(map: "correo_UNIQUE") @db.VarChar(45)
+  telefono        String?        @db.VarChar(45)
+  codigopostal    String?        @db.VarChar(45)
+  direccion       String?        @db.VarChar(45)
+  usuario         Int?
+  idsexo          Int
+  idespecialidad  Int
+  eliminado       Boolean        @default(false)
+  eventcolor      String?        @db.VarChar(45)
+  especialidades  especialidades @relation(fields: [idespecialidad], references: [idespecialidad], onDelete: NoAction, onUpdate: NoAction, map: "especialidad")
+  sexo            sexo           @relation(fields: [idsexo], references: [idsexo], onDelete: NoAction, onUpdate: NoAction, map: "sexo2")
+  usuarios        usuarios?      @relation(fields: [usuario], references: [idusuario], onDelete: NoAction, onUpdate: NoAction, map: "usuario")
+  pacientes       pacientes[]
+  turnos          turnos[]
+
+  @@index([usuario], map: "usuario_idx")
+  @@index([idsexo], map: "sexo2_idx")
+  @@index([idespecialidad], map: "especialidad_idx")
+}
+
+model especialidades {
+  idespecialidad     Int        @id @default(autoincrement())
+  nombreespecialidad String     @db.VarChar(45)
+  doctores           doctores[]
+}
+
+model localidades {
+  idlocalidad     Int         @id
+  nombrelocalidad String      @db.VarChar(45)
+  idprovincia     Int
+  provincias      provincias  @relation(fields: [idprovincia], references: [idprovincia], onDelete: NoAction, onUpdate: NoAction, map: "provincia")
+  pacientes       pacientes[]
+
+  @@index([idprovincia], map: "provincia_idx")
+}
+
+model obras_sociales {
+  idobrasocial     Int         @id @default(autoincrement())
+  nombreobrasocial String      @db.VarChar(45)
+  numobrasocial    String      @db.VarChar(45)
+  pacientes        pacientes[]
+}
+
+model pacientes {
+  idpaciente          Int                @id @default(autoincrement())
+  nrodocumento        String             @unique(map: "nrodocumento_UNIQUE") @db.VarChar(45)
+  nombrespaciente     String             @db.VarChar(45)
+  apellidopaciente    String             @db.VarChar(45)
+  fechanacimiento     DateTime           @db.Date
+  correo              String?            @db.VarChar(45)
+  telefono            String?            @db.VarChar(45)
+  telefonoresponsable String?            @db.VarChar(45)
+  codigopostal        String?            @db.VarChar(45)
+  direccion           String?            @db.VarChar(45)
+  provincia           Int
+  localidad           Int
+  obrasocial          Int
+  eliminado           Boolean            @default(false)
+  idsexo              Int
+  iddoctor            Int
+  historia_clinica    historia_clinica[]
+  doctores            doctores           @relation(fields: [iddoctor], references: [iddoctor], onDelete: NoAction, onUpdate: NoAction, map: "iddoc")
+  localidades         localidades        @relation(fields: [localidad], references: [idlocalidad], onDelete: NoAction, onUpdate: NoAction, map: "localidad")
+  obras_sociales      obras_sociales     @relation(fields: [obrasocial], references: [idobrasocial], onDelete: NoAction, onUpdate: NoAction, map: "obrasocial")
+  provincias          provincias         @relation(fields: [provincia], references: [idprovincia], onDelete: NoAction, onUpdate: NoAction, map: "provincia2")
+  sexo                sexo               @relation(fields: [idsexo], references: [idsexo], onDelete: NoAction, onUpdate: NoAction, map: "sexo")
+  turnos              turnos[]
+
+  @@index([localidad], map: "localidad_idx")
+  @@index([obrasocial], map: "obrasocial_idx")
+  @@index([provincia], map: "provincia2_idx")
+  @@index([idsexo], map: "sexo_idx")
+  @@index([iddoctor], map: "iddoc_idx")
+}
+
+model provincias {
+  idprovincia     Int           @id @default(autoincrement())
+  nombreprovincia String        @db.VarChar(45)
+  localidades     localidades[]
+  pacientes       pacientes[]
+}
+
+model roles {
+  idrol     Int        @id @default(autoincrement())
+  nombrerol String     @db.VarChar(45)
+  usuarios  usuarios[]
+}
+
+model sexo {
+  idsexo    Int         @id @default(autoincrement())
+  sexo      String      @db.VarChar(45)
+  doctores  doctores[]
+  pacientes pacientes[]
+}
+
+model tipos_de_sangre {
+  idtipodesangre   Int                @id @default(autoincrement())
+  tipodesangre     String             @db.VarChar(45)
+  historia_clinica historia_clinica[]
+}
+
+model tipos_documentos {
+  idtipo Int    @id @default(autoincrement())
+  tipo   String @db.VarChar(45)
+}
+
+model turnos {
+  idturno       Int       @id @default(autoincrement())
+  observaciones String?   @db.LongText
+  doctor        Int
+  turnEnd       DateTime  @db.DateTime(0)
+  turnStart     DateTime  @db.DateTime(0)
+  paciente      Int
+  idtipoturno   Int
+  doctores      doctores  @relation(fields: [doctor], references: [iddoctor], onDelete: NoAction, onUpdate: NoAction, map: "doctor3")
+  pacientes     pacientes @relation(fields: [paciente], references: [idpaciente], onDelete: NoAction, onUpdate: NoAction, map: "paciente3")
+  tipoturno     tipoturno @relation(fields: [idtipoturno], references: [idtipoturno], onDelete: NoAction, onUpdate: NoAction, map: "tipoturno")
+
+  @@index([doctor], map: "doctor3_idx")
+  @@index([paciente], map: "paciente3_idx")
+  @@index([idtipoturno], map: "tipoturno_idx")
+}
+
+model usuarios {
+  idusuario     Int        @id @default(autoincrement())
+  nombreusuario String     @unique(map: "nombreusuario_UNIQUE") @db.VarChar(45)
+  password      String
+  rol           Int
+  confirm       Boolean    @default(false)
+  token         String     @db.VarChar(150)
+  eliminado     Boolean    @default(false)
+  doctores      doctores[]
+  roles         roles      @relation(fields: [rol], references: [idrol], onDelete: NoAction, onUpdate: NoAction, map: "rol")
+
+  @@index([rol], map: "rol_idx")
+}
+
+model tipoturno {
+  idtipoturno Int      @id @default(autoincrement())
+  tituloturno String   @db.VarChar(45)
+  turnos      turnos[]
+}
+
+model historia_clinica {
+  idhistoriaclinica Int                @id @default(autoincrement())
+  alergias          String?            @db.VarChar(45)
+  observaciones     String?            @db.LongText
+  idpaciente        Int
+  idtiposangre      Int
+  detalle_historia  detalle_historia[]
+  pacientes         pacientes          @relation(fields: [idpaciente], references: [idpaciente], onDelete: NoAction, onUpdate: NoAction, map: "idpaciente")
+  tipos_de_sangre   tipos_de_sangre    @relation(fields: [idtiposangre], references: [idtipodesangre], onDelete: NoAction, onUpdate: NoAction, map: "idtiposangre")
+
+  @@index([idpaciente], map: "idpaciente_idx")
+  @@index([idtiposangre], map: "idtiposangre_idx")
+}

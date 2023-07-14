@@ -1,0 +1,156 @@
+/* START GENERAL STYLES */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+.site-layout {
+  height: 100vh;
+}
+.content {
+  padding: 3rem;
+  width: 100%;
+  overflow-y: auto;
+  height: 100vh;
+}
+/* FINISH GENERAL STYLES */
+
+/* START FORM REGISTER*/
+
+.register-form-button {
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FINISH FORM REGISTER*/
+
+/*----- START FORM LOGIN -----*/
+
+.login-form-button {
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+.login-form-forgot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*-----  FINISH FORM LOGIN ----*/
+
+/* START MENU TOP*/
+
+.div-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  &__logo {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+.menu-top__left {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 20rem;
+  h1 {
+    color: #fff;
+    margin: 0;
+  }
+}
+.menu-top__right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.itemSider {
+  color: rgba(255, 255, 255, 0.65);
+}
+.btn-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
+}
+
+.ant-menu-item-selected {
+  background-color: #457289 !important;
+}
+.ant-layout-header {
+  background-color: #8ab0c4 !important ;
+}
+
+.div {
+  background-color: #323237;
+  width: 150px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-top__a {
+  color: #fff;
+  &:hover {
+    color: #457289;
+  }
+}
+
+/* FINISH MENU TOP*/
+
+/* START MENU SIDER */
+.ant-layout-sider-children {
+  background-color: #8ab0c4 !important;
+  -webkit-box-shadow: 4px 10px 28px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 10px 28px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 10px 28px -11px rgba(0, 0, 0, 0.75);
+}
+.ant-menu {
+  background-color: #8ab0c4 !important;
+  &-sub {
+    background-color: #8ab0c4 !important;
+  }
+}
+
+/* FINISH MENU SIDER */
+
+.div-calendar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  label {
+    font-size: 1rem;
+  }
+}

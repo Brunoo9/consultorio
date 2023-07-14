@@ -1,0 +1,41 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/colors": "^6.0.0",
+    "@ant-design/icons": "^4.8.0",
+    "@ant-design/plots": "^1.2.2",
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/react": "^5.11.3",
+    "@fullcalendar/resource-daygrid": "^5.11.3",
+    "@fullcalendar/resource-timegrid": "^5.11.3",
+    "@fullcalendar/resource-timeline": "^5.11.3",
+    "@reduxjs/toolkit": "^1.9.3",
+    "antd": "^4.23.0",
+    "axios": "^0.27.2",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-highlight-words": "^0.18.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.3.0",
+    "sass": "^1.54.8"
+  },
+  "devDependencies": {
+    "@iconify/react": "^4.1.0",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "vite": "^3.0.7"
+  }
+}
